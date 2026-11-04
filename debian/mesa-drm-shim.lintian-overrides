@@ -1,0 +1,14 @@
+# The drm-shim libraries are dlopen()ed plugins without a versioned soname,
+# and the package name intentionally does not follow their sonames.
+package-name-doesnt-match-sonames libamdgpu-noop-drm-shim libasahi-noop-drm-shim libfreedreno-noop-drm-shim libnouveau-noop-drm-shim libradeon-noop-drm-shim
+shared-library-lacks-version usr/lib/*/libamdgpu_noop_drm_shim.so libamdgpu_noop_drm_shim.so
+shared-library-lacks-version usr/lib/*/libasahi_noop_drm_shim.so libasahi_noop_drm_shim.so
+shared-library-lacks-version usr/lib/*/libfreedreno_noop_drm_shim.so libfreedreno_noop_drm_shim.so
+shared-library-lacks-version usr/lib/*/libnouveau_noop_drm_shim.so libnouveau_noop_drm_shim.so
+shared-library-lacks-version usr/lib/*/libradeon_noop_drm_shim.so libradeon_noop_drm_shim.so
+
+# amdgpu_list_devices is a small upstream diagnostic helper installed to
+# /usr/bin. Like mesa-teflon-delegate's libteflon.so it lives outside a
+# multiarch directory, and upstream does not provide a manual page for it.
+mesa-drm-shim: arch-dependent-file-not-in-arch-specific-directory [usr/bin/amdgpu_list_devices]
+mesa-drm-shim: no-manual-page [usr/bin/amdgpu_list_devices]

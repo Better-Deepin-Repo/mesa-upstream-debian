@@ -1,0 +1,2 @@
+usr/bin/amdgpu_list_devices
+usr/lib/*/lib*_drm_shim.so
