@@ -1,3 +1,11 @@
+mesa (27.0.0~devel-3) unstable; urgency=medium
+
+  * control: build-depend on git. Mesa 27 gained venus-protocol.wrap,
+    a [wrap-git] subproject used by the virtio Vulkan driver, so Meson
+    needs git at configure time to clone it.
+
+ -- LFRon <ronforever@outlook.com>  Wed, 04 Nov 2026 20:20:00 +0800
+
 mesa (27.0.0~devel-2) unstable; urgency=medium
 
   * Follow Super-ZINK repo update

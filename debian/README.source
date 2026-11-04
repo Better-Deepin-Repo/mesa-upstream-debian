@@ -62,8 +62,13 @@ time instead of declaring them as Build-Depends:
 * The *-rs.wrap subprojects are downloaded by Meson. debhelper normally
   passes --wrap-mode=nodownload, so debian/rules appends
   --wrap-mode=default after it (Meson's last option wins).
+* venus-protocol.wrap is a [wrap-git] wrap, so Meson clones it with
+  "git" instead of downloading a tarball; git is therefore a real
+  Build-Depends. It is only used by the "virtio" Vulkan driver
+  (venus), which Debian enables on the LLVM architectures.
 
-Therefore the build requires network access to crates.io and to the
-source URLs listed in subprojects/*.wrap. Before generating a source
-package run "debian/rules purge-subprojects" to remove the downloaded
-subproject tree and cache.
+Therefore the build requires network access to crates.io, to
+gitlab.freedesktop.org (venus-protocol) and to the source URLs listed in
+subprojects/*.wrap. Before generating a source package run
+"debian/rules purge-subprojects" to remove the downloaded subproject
+tree and cache.
