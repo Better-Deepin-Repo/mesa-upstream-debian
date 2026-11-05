@@ -1,3 +1,9 @@
+mesa (27.0.0~devel-4) unstable; urgency=medium
+
+  * update mesa upstream
+
+ -- LFRon <ronforever@outlook.com>  Thu, 05 Nov 2026 21:24:00 +0800
+
 mesa (27.0.0~devel-3) unstable; urgency=medium
 
   * control: build-depend on git. Mesa 27 gained venus-protocol.wrap,
@@ -1667,7 +1673,7 @@ mesa (21.2.3-1) unstable; urgency=medium
   * rules: Build with -O2 for ppc64el.
   * Build with llvm 13.
 
-  [ Aurelien Jarno ]
+  [ Aurelien Jarno ]
   * Disable LLVM support on riscv64, it doesn't have JIT. (Closes: #995618)
 
  -- Timo Aaltonen <tjaalton@debian.org>  Mon, 04 Oct 2021 15:18:27 +0300
@@ -4178,7 +4184,7 @@ mesa (9.1.4-1) unstable; urgency=low
   * Cherry-pick commit 0829b89 (mesa: Fix ieee fp on Alpha) from upstream
     (Fixes FTBFS on alpha)
 
-  [ Timo Aaltonen ]
+  [ Timo Aaltonen ]
   * New upstream release.
 
   [ Julien Cristau ]
