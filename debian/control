@@ -12,6 +12,7 @@ Build-Depends:
  flex,
  git,
  glslang-tools [amd64 arm64 armhf i386 loong64 powerpc ppc64 ppc64el riscv64 s390x sparc64 x32],
+ libarchive-dev,
  libclang-22-dev [amd64 arm64 armhf i386 loong64 powerpc ppc64 ppc64el riscv64 s390x sparc64 x32],
  libclang-cpp22-dev [amd64 arm64 armhf i386 loong64 powerpc ppc64 ppc64el riscv64 s390x sparc64 x32],
  libclc-22 [amd64 arm64 armhf i386 loong64 powerpc ppc64 ppc64el riscv64 s390x sparc64 x32],

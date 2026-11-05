@@ -12,6 +12,7 @@ Build-Depends:
  flex,
  git,
  glslang-tools [@LLVM_ARCHS@],
+ libarchive-dev,
  libclang-@LLVM_VERSION@-dev [@LLVM_ARCHS@],
  libclang-cpp@LLVM_VERSION@-dev [@LLVM_ARCHS@],
  libclc-@LLVM_VERSION@ [@LLVM_ARCHS@],

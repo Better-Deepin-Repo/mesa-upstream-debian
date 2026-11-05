@@ -1,0 +1,5 @@
+usr/bin/bsdcat
+usr/bin/bsdcpio
+usr/bin/bsdtar
+usr/lib/*/libarchive.so
+usr/lib/*/libarchive.so.*
