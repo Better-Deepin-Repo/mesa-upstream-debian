@@ -12,6 +12,11 @@ DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_ARCH_OS   ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 DEB_HOST_ARCH_CPU  ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 
+# The package version uses "+really" for sorting (for example
+# 27.0.0~devel-9+really26.3.0-1), but Mesa itself must report the real
+# upstream version (26.3.0).
+MESA_VERSION = $(shell echo '$(DEB_VERSION_UPSTREAM)' | sed 's/.*+really//')
+
 # for finding the correct llvm-config when meson doesn't know about it yet
 LLVM_VERSION = 22
 
@@ -214,8 +219,9 @@ confflags += \
 	$(confflags_TEFLON)
 
 
+# Write Mesa's real upstream version, not the Debian "+really" version.
 override_dh_clean: regen_control
-	dpkg-parsechangelog | awk '/^Version:/ {print $$2}' | sed 's/-.*//;s/~/-/' > VERSION
+	echo '$(MESA_VERSION)' | sed 's/~/-/' > VERSION
 	rm -rf build
 	rm -rf configure bin/config.guess bin/config.sub config.h.in
 	rm -rf $$(find -name Makefile.in)
@@ -237,7 +243,7 @@ purge-subprojects:
 	fi
 
 override_dh_auto_configure:
-	dpkg-parsechangelog | awk '/^Version:/ {print $$2}' > VERSION
+	echo '$(MESA_VERSION)' > VERSION
 	if echo ' $(RUSTICL_ARCHS) ' | grep -q ' $(DEB_HOST_ARCH) '; then \
 		echo "Installing bindgen-cli $(BINDGEN_VERSION) from crates.io"; \
 		mkdir -p debian/cargo-home debian/toolchain; \
@@ -330,7 +336,9 @@ override_dh_makeshlibs:
 		--builddirectory=build/ \
 		--buildsystem=meson
 
-# For maintainer use only, generate a tarball:
+# For maintainer use only, generate a tarball.  dpkg-source expects the
+# orig tarball name to carry the full Debian upstream version, including
+# the "+really" transition prefix.
 gentarball:
 	tar --transform 's,^.\/,$(DEB_SOURCE)-$(DEB_VERSION_UPSTREAM)/,' \
 		--exclude 'debian' --exclude '.git.*' --exclude-vcs \

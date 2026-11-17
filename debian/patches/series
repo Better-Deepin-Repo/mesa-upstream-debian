@@ -1,0 +1,3 @@
+01-x11-copy-cross-GPU-pixmaps-on-Xwayland.patch
+path_max.diff
+src_glx_dri_common.h.diff

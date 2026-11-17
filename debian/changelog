@@ -1,3 +1,20 @@
+mesa (27.0.0~devel-9+really26.3.0-1) unstable; urgency=medium
+
+  * New upstream 26.3.0 from the staging/26.3 branch.
+  * Use the +really convention so this version sorts above the installed
+    27.0.0~devel-9 packages without an epoch, while a future 27.0.0
+    still sorts above it.
+  * Do not publish newer 27.0.0~devel-* versions in the same repository:
+    they sort above this +really version.
+  * Add 01-x11-copy-cross-GPU-pixmaps-on-Xwayland.patch: use
+    XCB_PRESENT_OPTION_COPY for cross-GPU pixmaps on Xwayland, fixing
+    PRIME dGPU presentation stalls.
+  * Restore path_max.diff and src_glx_dri_common.h.diff; 26.3 still
+    needs them on Hurd.
+  * Drop lp2143073.patch; the fix is already in 26.3.
+
+ -- LFRon <ronforever@outlook.com>  Mon, 16 Nov 2026 23:45:00 +0800
+
 mesa (27.0.0~devel-9) unstable; urgency=medium
 
   * update mesa upstream

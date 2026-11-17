@@ -46,12 +46,26 @@ Updating debian/upstream/signing-key.asc with new keys requires the following st
 * export it to the file:
   gpg --export-options export-minimal --export -a $keyid >> debian/upstream/signing-key.asc
 
-Building from Mesa main
------------------------
+Building from Mesa 26.3
+----------------------
 
-This package is built from a Mesa main snapshot (27.0.0-devel). The
+This package is built from the Mesa staging/26.3 branch (26.3.0). The
 upstream source is a plain "git archive" of the selected commit; debian/
 is kept separately.
+
+The package version uses the Debian "+really" convention:
+
+  27.0.0~devel-9+really26.3.0-1
+
+This sorts above the 27.0.0~devel-9 packages that users may already have
+installed, while a future 27.0.0-1 sorts above it again.  No epoch is used.
+debian/rules strips the "+really..." prefix before writing VERSION, so Mesa
+itself still reports 26.3.0.
+
+Because this version is still lower than 27.0.0~devel-10-1, do not publish
+newer 27.0.0~devel-* packages in the same repository; apt would prefer those
+instead.  For later 26.3.x uploads keep the same carrier prefix and update
+the real version, for example 27.0.0~devel-9+really26.3.1-1.
 
 The build intentionally fetches Rust tooling and crates at configure
 time instead of declaring them as Build-Depends:
